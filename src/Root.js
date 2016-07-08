@@ -4,50 +4,39 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import {
-  Platform,
+  Navigator,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native';
 
+import LoginScreen from './Screens/LoginScreen'
+import MainScreen from './Screens/MainScreen'
+
 export default class starter extends Component {
+  constructor(props){
+    super(props)
+    this.renderScene =this.renderScene.bind(this)
+  }
   render() {
-    const txt = Platform.OS === 'ios' ?
-          "Cmd+D or shake for dev menu":
-          "Cmd+M or shake for dev menu"
-
-
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-      {txt}
-        </Text>
-      </View>
+      <Navigator
+          initialRoute={{id: 'login'}}
+          renderScene={this.renderScene}
+      />
     )
   }
+
+  renderScene(route, navigator){
+    console.log("Render screen")
+
+    switch (route.id){
+      case 'login':
+        return <LoginScreen navigator={navigator} />
+      case 'main':
+        return <MainScreen navigator={navigator} />
+    }
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
