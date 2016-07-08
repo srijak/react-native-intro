@@ -14,14 +14,9 @@ import {
 
 export default class starter extends Component {
   render() {
-    const txt = Platform.OS === 'ios' ? 
-		<Text style={styles.instructions}>
-		  Press Cmd+R to reload,{'\n'}
-		  Cmd+D or shake for dev menu
-		</Text> :
-		<Text style={styles.instructions}>
-		  Cmd+M or shake for dev menu
-		</Text>;
+    const txt = Platform.OS === 'ios' ?
+          "Cmd+D or shake for dev menu":
+          "Cmd+M or shake for dev menu"
 
 
     return (
@@ -30,11 +25,10 @@ export default class starter extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+      {txt}
         </Text>
-	{txt}
       </View>
-    );
+    )
   }
 }
 
